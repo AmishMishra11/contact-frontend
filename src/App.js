@@ -7,7 +7,8 @@ import { sortingFunction } from "./utilities/sortingFunction";
 import { searchFunction } from "./utilities/searchFunction";
 import Modal from "./Components/Modal";
 import { useContact } from "./Context/ContactContext";
-import { all } from "axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Loading from "./Components/Loading";
 
 function App() {
@@ -41,6 +42,17 @@ function App() {
       )}
 
       {showModal && <Modal onClose={() => setShowModal(false)} />}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+      />
     </div>
   );
 }

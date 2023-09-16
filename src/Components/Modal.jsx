@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { addContact } from "../Services/Contacts/addContact";
 import { editContact } from "../Services/Contacts/editContact";
 import { useContact } from "../Context/ContactContext";
+import { toast } from "react-toastify";
 
 function Modal({ onClose }) {
   const { stateContact, dispatchContact } = useContact();
@@ -15,6 +16,8 @@ function Modal({ onClose }) {
     contactPhoneNumber: "",
     contactEmail: "",
   });
+
+  const { contactName, contactPhoneNumber, contactEmail } = tempContactDetails;
 
   useEffect(() => {
     if (Object.keys(singleContact).length) {
@@ -84,7 +87,7 @@ function Modal({ onClose }) {
             className=" p-1 text-base rounded-md  w-60 "
             placeholder="full name"
             name="contactName"
-            value={tempContactDetails.contactName}
+            value={contactName}
             type="text"
             onChange={handleChange}
           />
@@ -96,7 +99,7 @@ function Modal({ onClose }) {
             className=" p-1 text-base rounded-md  w-60 "
             placeholder="1234567890"
             name="contactPhoneNumber"
-            value={tempContactDetails.contactPhoneNumber}
+            value={contactPhoneNumber}
             type="number"
             onChange={handleChange}
           />
@@ -108,7 +111,7 @@ function Modal({ onClose }) {
             className=" p-1 text-base rounded-md  w-60 "
             placeholder="xyz@gmail.com"
             name="contactEmail"
-            value={tempContactDetails.contactEmail}
+            value={contactEmail}
             type="text"
             onChange={handleChange}
           />
@@ -116,14 +119,22 @@ function Modal({ onClose }) {
         {isEdit ? (
           <button
             className="bg-[#555079] text-white px-4 py-2 cursor-pointer w-32 rounded-md"
-            onClick={handleEdit}
+            onClick={() =>
+              contactName && contactPhoneNumber && contactEmail
+                ? handleEdit()
+                : toast.warning("Please fill all the fields", {})
+            }
           >
             Edit
           </button>
         ) : (
           <button
             className="bg-[#555079] text-white px-4 py-2 cursor-pointer w-32 rounded-md"
-            onClick={handleSave}
+            onClick={() =>
+              contactName && contactPhoneNumber && contactEmail
+                ? handleSave()
+                : toast.warning("Please fill all the fields", {})
+            }
           >
             Save
           </button>
