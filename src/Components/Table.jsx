@@ -36,13 +36,13 @@ function Table({ data, setShowModal }) {
             <tr key={contact._id} className="bg-white border-b ">
               <th
                 scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap "
               >
                 {contact.name}
               </th>
-              <td className="px-6 py-4">{contact.phone}</td>
-              <td className="px-6 py-4">{contact.email}</td>
-              <td className="px-6 py-4">
+              <td className="px-6 py-4 text-center">{contact.phone}</td>
+              <td className="px-6 py-4 text-center">{contact.email}</td>
+              <td className="px-6 py-4 text-center">
                 {new Date(contact.created_Date)
                   .toISOString()
                   .split("T")[0]
@@ -50,7 +50,7 @@ function Table({ data, setShowModal }) {
                   .reverse()
                   .join("-")}
               </td>
-              <td className="px-6 py-4 ">
+              <td className="px-6 py-4 text-center ">
                 <div
                   className="font-medium text-blue-600 cursor-pointer hover:underline"
                   onClick={() => {
@@ -64,7 +64,7 @@ function Table({ data, setShowModal }) {
                   Edit
                 </div>
               </td>
-              <td className="px-6 py-4 ">
+              <td className="px-6 py-4 text-center ">
                 <div
                   className="font-medium text-blue-600 cursor-pointer hover:underline"
                   onClick={() => deleteContact(dispatchContact, contact._id)}
